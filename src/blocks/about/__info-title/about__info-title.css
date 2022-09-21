@@ -1,0 +1,26 @@
+.about__info-title {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  margin-top: 0px;
+  margin-bottom: 26px;
+}
+
+@media screen and (max-width: 1279px){
+  .about__info-title {
+    margin-bottom: 22px;
+    
+  }
+}
+
+@media screen and (max-width: 767px){
+  .about__info-title{
+    max-width: 284px;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 16px;
+  }
+}

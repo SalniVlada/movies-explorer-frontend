@@ -1,0 +1,14 @@
+.seach__button {
+  min-width: 44px;
+  min-height: 44px;
+  background: #2BE080;
+  border-radius: 8px;
+  border: none;
+  opacity: 1;
+  transition: 1s;
+}
+
+.seach__button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

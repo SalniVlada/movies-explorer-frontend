@@ -1,0 +1,13 @@
+.burgerMenu__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  margin-top: 158px;
+}
+
+@media screen and (max-width:767px){
+  .burgerMenu__links {
+    margin-top: 144px;
+  }
+}

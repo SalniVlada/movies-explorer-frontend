@@ -1,0 +1,28 @@
+.pageNotFound__title {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 169px;
+  text-align: center;
+  max-width: 400px;
+  margin-top: 246px;
+  margin-bottom: 0px
+}
+
+@media screen and (max-width: 1279px){
+  .pageNotFound__title {
+    padding-top: 408px;
+    margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .pageNotFound__title {
+    margin: 0;
+    padding-top: 329px;
+    padding-bottom: 10px;
+    font-size: 80px;
+    line-height: 97px;
+  }
+}

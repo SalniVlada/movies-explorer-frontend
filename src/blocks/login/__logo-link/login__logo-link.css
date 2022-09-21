@@ -1,0 +1,9 @@
+.login__logo-link {
+  opacity: 1;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.login__logo-link:hover {
+  opacity: 0.8;
+}

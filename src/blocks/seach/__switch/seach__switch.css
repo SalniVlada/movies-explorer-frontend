@@ -1,0 +1,21 @@
+.seach__switch {
+  max-width: 1140px;
+  margin: 0 auto;
+  margin-top: 23px;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width:1279px) {
+  .seach__switch {
+    max-width: 708px;
+    margin-top: 35px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .seach__switch {
+    max-width: 292px;
+    margin-top: 40PX;
+  }
+}

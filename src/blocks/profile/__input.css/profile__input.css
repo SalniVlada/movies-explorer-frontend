@@ -1,0 +1,17 @@
+.profile__input {
+  min-height: 30px;
+  max-width: 147px;
+  border: none;
+  text-align: right;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+@media screen and (max-width:767px) {
+  .profile__input {
+    max-width: 120px;
+  }
+}

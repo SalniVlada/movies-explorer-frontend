@@ -1,0 +1,15 @@
+.login__quest {
+  max-width: 396px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 70px;
+}
+
+@media screen and (max-width:767px) {
+  .login__guest {
+    min-width: 260px;
+    margin-bottom: 0px;
+  }
+}

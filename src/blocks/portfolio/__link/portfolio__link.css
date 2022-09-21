@@ -1,0 +1,7 @@
+.portfolio__link {
+  display: flex;
+  justify-content: space-between;
+  max-height: 69px;
+  text-decoration: none;
+  margin-top: 20px;
+}

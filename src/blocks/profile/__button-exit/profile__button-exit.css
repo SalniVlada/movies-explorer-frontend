@@ -1,0 +1,30 @@
+.profile__button-exit {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  min-width: 410px;
+  margin: 0 auto;
+  margin-top: 16px;
+  margin-bottom: 70px;
+  background-color: white;
+  color: rgba(238, 52, 101, 1);
+  border: none;
+  cursor: pointer;
+  opacity: 1;
+  transition: 1s;
+}
+
+.profile__button-exit:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width:767px) {
+  .profile__button-exit {
+    min-width: 260px;
+    margin-top: 16px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

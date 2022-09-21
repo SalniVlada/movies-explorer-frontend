@@ -1,0 +1,27 @@
+.profile__error-message {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  min-width: 410px;
+  margin: 0 auto;
+  margin-top: 189px;
+  color: rgba(238, 52, 101, 1);
+  text-align: center;
+}
+
+@media screen and (max-width:1279px) {
+  .profile__error-message {
+    margin-top: 170px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .profile__error-message {
+    min-width: 260px;
+    margin-top: 340px;
+    font-size: 10px;
+    line-height: 15px;
+  }
+}

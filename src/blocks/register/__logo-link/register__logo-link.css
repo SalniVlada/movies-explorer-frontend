@@ -1,0 +1,9 @@
+.register__logo-link {
+  opacity: 1;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.register__logo-link:hover {
+  opacity: 0.8;
+}

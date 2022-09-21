@@ -1,0 +1,11 @@
+@import url(../../../blocks/cards/card/card.css);
+@import url(../../../blocks/cards/card/__button-more/card__button-more.css);
+@import url(../../../blocks/cards/card/__button-more/_disable/card__button-more_disable.css);
+@import url(../../../blocks/cards/card/__button/card__button.css);
+@import url(../../../blocks/cards/card/__duration/card__duration.css);
+@import url(../../../blocks/cards/card/__group/card__group.css);
+@import url(../../../blocks/cards/card/__name/card__name.css);
+@import url(../../../blocks/cards/card/__photo/card__photo.css);
+@import url(../../../blocks/cards/card/__title/card__title.css);
+@import url(../../../blocks/cards/card/__button/_delete/card__button_delete.css);
+@import url(../../../blocks/cards/card/__button/_save/card__button_save.css);

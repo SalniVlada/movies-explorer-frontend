@@ -1,0 +1,20 @@
+.about__block {
+  display: flex;
+  list-style-type: none;
+  margin-top: 0px;
+  padding: 0;
+}
+
+@media screen and (max-width: 1279px){
+  .about__block {
+    max-width: 668px;
+    margin-top: 93px;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .about__block {
+    max-width: 100px;
+    margin-top: 0px;
+  }
+}

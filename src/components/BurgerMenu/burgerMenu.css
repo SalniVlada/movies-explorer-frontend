@@ -1,0 +1,7 @@
+@import url(../../blocks/burgerMenu/burgerMenu.css);
+@import url(../../blocks/burgerMenu/__button-close/burgerMenu__button-close.css);
+@import url(../../blocks/burgerMenu/__button-home/burgerMenu__button-home.css);
+@import url(../../blocks/burgerMenu/__link-home/burgerMenu__link-home.css);
+@import url(../../blocks/burgerMenu/__link/burgerMenu__link.css);
+@import url(../../blocks/burgerMenu/__link/_active/burgerMenu__link_active.css);
+@import url(../../blocks/burgerMenu/__links/burgerMenu__links.css);
