@@ -14,5 +14,6 @@
   .login__logo {
     margin: 0 auto;
     margin-top: 56px;
+    display: flex;
   }
 }

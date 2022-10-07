@@ -1,0 +1,20 @@
+.promo__bg {
+  background: url(../../../images/landing-logo.svg) no-repeat right bottom;
+  height: 346px;
+  width: 100%;
+}
+
+@media screen and (max-width:1279px) {
+  .promo__bg {
+    height: 370px;
+    background-position: center bottom;
+    background-size: 100% auto;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .promo__bg {
+    height: 290px;
+    background-size: auto 230px;
+  }
+}
