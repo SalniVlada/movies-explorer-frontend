@@ -1,0 +1,26 @@
+.card__photo {
+  border-radius: 10px 10px 0 0;
+  height: 203px;
+  max-width: 364px;
+  min-height: 203px;
+  object-fit: cover;
+  position: relative;
+  vertical-align: bottom;
+  width: 364px;
+}
+
+@media screen and (max-width: 1279px){
+  .card__photo {
+    width: 339px;
+    height: 190px;
+    min-height: 190px;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .card__photo {
+    width: 300px;
+    height: 168px;
+    min-height: 168px;
+  }
+}

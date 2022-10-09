@@ -1,0 +1,15 @@
+.portfolio__link-icon {
+  max-width: 29px;
+  max-height: 60px;
+  padding-right: 7px;
+  padding-bottom: 14px;
+}
+
+@media screen and (max-width:767px) {
+  .portfolio__link-icon {
+    max-width: 18px;
+    max-height: 10px;
+    padding-right: 5px;
+    padding-top: 5px;
+  }
+}

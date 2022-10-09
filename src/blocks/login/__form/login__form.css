@@ -1,0 +1,17 @@
+.login__form {
+  max-width: 396px;
+  min-height: 156px;
+  margin: 0 auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width:767px) {
+  .login__form {
+    max-width: 260px;
+    min-height: 156px;
+    margin: 0 auto;
+    margin-top: 80px;
+  }
+}

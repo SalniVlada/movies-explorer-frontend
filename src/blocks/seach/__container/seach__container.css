@@ -1,0 +1,13 @@
+.seach__container {
+  margin: 0 auto;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1279px){
+  .seach__container {
+    margin-top: 80px;
+  }
+}

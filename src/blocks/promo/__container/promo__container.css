@@ -1,0 +1,19 @@
+.promo__container {
+  max-width: 1140px;
+  min-height: 560px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width:1279px) {
+  .promo__container {
+    max-width: 680px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .promo__container {
+    max-width: none;
+    width: 100%;
+    overflow: hidden;
+  }
+}

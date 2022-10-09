@@ -1,0 +1,29 @@
+.student__info {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  mix-blend-mode: normal;
+  max-width: 600px;
+  margin-top: 0px;
+  margin-bottom: 99px;
+}
+
+@media screen and (max-width: 1279px){
+  .student__info {
+    font-size: 12px;
+    line-height: 18px;
+    max-width: 364px;
+    margin-bottom: 78px;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .student__info {
+    max-width: 292px;
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 34px;
+  }
+}

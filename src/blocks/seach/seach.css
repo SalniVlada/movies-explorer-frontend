@@ -1,0 +1,19 @@
+.seach {
+  max-width: 1140px;
+  min-width: 320px;
+  max-height: 228px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width:1279px) {
+  .seach {
+    max-width: 708px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .seach {
+    max-width: 292px;
+  }
+}

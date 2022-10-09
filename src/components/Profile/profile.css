@@ -1,0 +1,11 @@
+@import url(../../blocks/profile/profile.css);
+@import url(../../blocks/profile/__title/profile__title.css);
+@import url(../../blocks/profile/__text/profile__text.css);
+@import url(../../blocks/profile/__person/profile__person.css);
+@import url(../../blocks/profile/__input.css/profile__input.css);
+@import url(../../blocks/profile/__input-area/profile__input-area.css);
+@import url(../../blocks/profile/__error-message/profile__error-message.css);
+@import url(../../blocks/profile/__button-save/_disable/profile__button-save_disable.css);
+@import url(../../blocks/profile/__button-save/profile__button-save.css);
+@import url(../../blocks/profile/__button-exit/profile__button-exit.css);
+@import url(../../blocks/profile/__button-edit/profile__button-edit.css);

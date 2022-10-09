@@ -1,0 +1,13 @@
+.portfolio__links {
+  border-bottom: 1px solid #E8E8E8;
+  opacity: 1;
+  transition: 1s;
+}
+
+.portfolio__links:last-child {
+  border-bottom: 0;
+}
+
+.portfolio__links:hover {
+  opacity: 0.8;
+}

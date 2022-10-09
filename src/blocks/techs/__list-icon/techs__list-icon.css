@@ -1,0 +1,33 @@
+.techs__list-icon {
+  background: #E8E8E8;
+  border-radius: 10px;
+  min-width: 90px;
+  min-height: 60px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width:1279px) {
+  .techs__list-icon {
+    min-width: 84px;
+    min-height: 57px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .techs__list-icon {
+    justify-content: space-around;
+    font-size: 12px;
+    line-height: 15px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+  }
+}

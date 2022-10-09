@@ -1,0 +1,28 @@
+.about__block-tech {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #A0A0A0;
+  min-width: 200px;
+  padding-top: 14px;
+  margin: 0;
+}
+
+@media screen and (max-width: 1279px){
+  .about__block-tech {
+    min-width: 120px;
+    margin-left: 0px;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .about__block-tech {
+    min-width: 80px;
+    font-size: 11px;
+    line-height: 13px;
+    padding-top: 10px;
+  }
+}

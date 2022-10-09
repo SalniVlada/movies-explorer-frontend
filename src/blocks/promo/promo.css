@@ -1,0 +1,21 @@
+.promo {
+  background-color: #5C5C5C;
+  width: 100%;
+  min-height: 557px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width:1279px) {
+  .promo {
+    min-height: 841px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .promo {
+    min-height: 630px;
+  }
+}

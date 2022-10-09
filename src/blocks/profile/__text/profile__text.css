@@ -1,0 +1,9 @@
+.profile__text {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: left;
+  min-width: 141px;
+}

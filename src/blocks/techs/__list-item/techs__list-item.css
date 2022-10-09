@@ -1,0 +1,13 @@
+.techs__list-item {
+   margin-left: 10px;
+}
+
+.techs__list-item:first-child {
+  margin-right: 0px;
+}
+
+@media screen and (max-width:767px){
+  .techs__list-item {
+    margin-left: 0px;
+  }
+}

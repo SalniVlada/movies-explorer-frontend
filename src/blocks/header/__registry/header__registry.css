@@ -1,0 +1,17 @@
+.header__registry {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+  margin-right: 30px;
+  text-decoration: none;
+}
+
+@media screen and (max-width:767px){
+  .header__registry {
+    font-size: 10px;
+    margin-right: 14px;
+  }
+}

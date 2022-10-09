@@ -1,0 +1,9 @@
+.student__container {
+  margin-top: 65px;
+}
+
+@media screen and (max-width: 767px){
+  .student__container {
+    margin-top: 40px;
+  }
+}

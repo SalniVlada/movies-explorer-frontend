@@ -1,0 +1,21 @@
+.login__guest-text {
+  max-width: 190px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #A0A0A0;
+  margin-right: 6px;
+}
+
+@media screen and (max-width:767px) {
+  .login__guest-text {
+    min-width: 145px;
+    margin-right: 7px;
+    font-size: 12px;
+    line-height: 15px;
+    margin-top: 15px;
+  }
+}

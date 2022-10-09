@@ -1,0 +1,26 @@
+.header__link {
+  background: #2BE080;
+  border-radius: 3px;
+  border: none;
+  min-width: 76px;
+  min-height: 32px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  opacity: 1;
+  transition: 1s;
+}
+
+.header__link:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px){
+  .header__link {
+    min-width: 54px;
+    min-height: 26px;
+  }
+}

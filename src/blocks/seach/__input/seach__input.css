@@ -1,0 +1,29 @@
+.seach__input {
+  min-width: 1066px;
+  min-height: 50px;
+  background: #F9F9F9;
+  border-radius: 8px;
+  margin-right: 10px;
+  border: none;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #A0A0A0;
+  padding-left: 20px;
+}
+
+@media screen and (max-width:1279px) {
+  .seach__input {
+    min-width: 632px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .seach__input {
+    min-width: 220px;
+    min-height: 44px;
+    padding-left: 15px;
+  }
+}

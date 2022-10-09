@@ -1,0 +1,13 @@
+@import url(../../../blocks/about/about.css);
+@import url(../../../blocks/about/__block-time/about__block-time.css);
+@import url(../../../blocks/about/__block-time_green/about__block-time_green.css);
+@import url(../../../blocks/about/__block-time_grey/about__block-time_grey.css);
+@import url(../../../blocks/about/__block/about__block.css);
+@import url(../../../blocks/about/__title/about__title.css);
+@import url(../../../blocks/about/__info-text/about__info-text.css);
+@import url(../../../blocks/about/__info-title/about__info-title.css);
+@import url(../../../blocks/about/__info/about__info.css);
+@import url(../../../blocks/about/__text/about__text.css);
+@import url(../../../blocks/about/__list/about__list.css);
+@import url(../../../blocks/about/__block-item/about__block-item.css);
+@import url(../../../blocks/about/__block-tech/about__block-tech.css);

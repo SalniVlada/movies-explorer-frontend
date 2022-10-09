@@ -1,0 +1,16 @@
+.seach__checkbox-name {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  margin-top: 5px;
+}
+
+@media screen and (max-width:767px) {
+  .seach__checkbox-name {
+    font-size: 11px;
+  }
+}
+
+

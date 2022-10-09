@@ -1,0 +1,17 @@
+.header__nav_films {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #000000;
+  text-decoration: none;
+  margin-right: 16px;
+  min-width: 54px;
+  margin-left: 65px;
+}
+
+.header__nav_films:last-child {
+  margin-right: 0px;
+  margin-left: 0px;
+}

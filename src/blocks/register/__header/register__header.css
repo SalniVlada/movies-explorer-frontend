@@ -1,0 +1,11 @@
+.register__header {
+  max-width: 396px;
+}
+
+@media screen and (max-width:767px) {
+  .register__header {
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+  }
+}

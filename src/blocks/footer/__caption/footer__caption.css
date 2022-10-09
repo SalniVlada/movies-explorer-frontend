@@ -1,0 +1,21 @@
+.footer__caption {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  padding-top: 10px;
+}
+
+@media screen and (max-width: 1279px){
+  .footer__caption {
+    margin-top: 6px;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .footer__caption {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

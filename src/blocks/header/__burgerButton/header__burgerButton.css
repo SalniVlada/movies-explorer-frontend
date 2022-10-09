@@ -1,0 +1,21 @@
+.header__burgerButton {
+  display: none;
+}
+
+@media screen and (max-width: 1279px){
+  .header__burgerButton {
+    display: block;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    opacity: 1;
+    transition: 1s;
+    padding: 0px;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .header__burgerButton {
+    display: block;
+  }
+}

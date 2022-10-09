@@ -1,0 +1,26 @@
+.profile__button-save_disable {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    min-width: 410px;
+    min-height: 45px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    background-color: #F8F8F8;
+    color: #C2C2C2;
+    border: none;
+    border-radius: 3px;
+    padding: 0px;
+  }
+
+  @media screen and (max-width:767px) {
+    .profile__button-save_disable {
+      min-width: 260px;
+      font-size: 12px;
+      line-height: 15px;
+      margin-top: 10px;
+    }
+  }
