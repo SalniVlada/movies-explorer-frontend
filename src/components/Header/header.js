@@ -31,7 +31,7 @@ function Header() {
   return (
     <header className={backgroundColor}>
       <div className='header__container'>
-        <NavLink className="header__logolink"  activeClassName="header__logolink-active" exact to="/">
+        <NavLink className="header__logolink" activeClassName="header__logolink-active" exact to="/">
           <img className="header__logo" src={Logo} alt="Логотип"/>
         </NavLink>
 

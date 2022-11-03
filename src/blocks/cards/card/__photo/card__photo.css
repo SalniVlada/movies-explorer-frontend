@@ -7,6 +7,7 @@
   position: relative;
   vertical-align: bottom;
   width: 364px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1279px){
