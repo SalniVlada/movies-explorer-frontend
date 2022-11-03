@@ -23,6 +23,8 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [currentUser, setCurrentUser] = useState([]);
   const [loggedIn, setLoggedIn] = useState(null);
+  const [searchValue, setSearchValue] = useState('');
+  const [isShortDurations, setIsShortDurations] = useState(false);
   const [card, setCard] = useState([]);
   const [likedCards, setLikedCards] = useState([]);
   const [filteredLikedCards, setFilteredLikedCards] = useState([]);
@@ -70,13 +72,9 @@ function App() {
   }
 
   function onRegister(name, email, password) {
-    setIsLoading(true);
     authApi.signUp({name: name, password: password, email: email})
       .then(() => {
         onLogin(password, email);
-        history.push('/movies');
-        history.go(0);
-        setErrorMessage('');
       })
       .catch((err) => {
         if (409) {
@@ -85,15 +83,14 @@ function App() {
           setErrorMessage('При регистрации пользователя произошла ошибка.')
         }
       })
-      .finally(() => setIsLoading(false));
   }
 
   function onLogin(password, email) {
-    setIsLoading(true);
     authApi.signIn({password: password, email: email})
       .then((data) => {
         localStorage.setItem('jwt', data.jwt);
         setCurrentUser(data);
+        setLoggedIn(true);
         history.push('/movies');
         history.go(0);
         setErrorMessage('');
@@ -105,11 +102,9 @@ function App() {
           setErrorMessage('При авторизации пользователя произошла ошибка')
         }
       })
-      .finally(() => setIsLoading(false));
   }
 
   function handleUpdateUser(name, email) {
-    setIsLoading(true);
     mainApi.patchUserInfo(name, email)
       .then((data)=>{
         setCurrentUser(data);
@@ -121,11 +116,10 @@ function App() {
           setErrorMessage('При обновлении профиля произошла ошибка')
         }
       })
-      .finally(() => setIsLoading(false));
   };
 
   //фильтр по фильмам
-  function filterCards(searchValue, isShortDurations, card) {
+  function filterCards(card) {
     const filteredCard = card
     .filter((card) => {
       return (card.nameRU.toUpperCase().includes(searchValue.toUpperCase()) || 
@@ -138,7 +132,7 @@ function App() {
     setIsLoading(true);
     if (loggedIn) {
       moviesApi.getMovies().then((data) => {
-        const filteredCards = filterCards(searchValue, isShortDurations, data)
+        const filteredCards = filterCards(data)
           .map((card) => {
             const likedCard = likedCards.find((likedCard) => likedCard.movieId === card.id);
             const likedCardId = likedCard ? likedCard._id : undefined;
@@ -167,13 +161,12 @@ function App() {
     }
   };
 
-  function searchSavedCards(searchValue, isShortDurations) {
-    const filteredSavedCards = filterCards(searchValue, isShortDurations, likedCards);
+  function searchSavedCards() {
+    const filteredSavedCards = filterCards(likedCards);
     setFilteredLikedCards(filteredSavedCards);
   }
 
   function handleCardSave(card) {
-    setIsLoading(true);
     mainApi.postMovie(card)
       .then((data) => {
         const newCard = { ...data.data, isSaved: true }
@@ -187,13 +180,16 @@ function App() {
           currentLikedCards.push(newCard);
           return currentLikedCards;
         });
+        setFilteredLikedCards((state) => {
+          const currentLikedCards = state.filter((c) => (c._id !== card._id));
+          currentLikedCards.push(newCard);
+          return filterCards(currentLikedCards);
+        });
       })
       .catch((err) => console.error(err))
-      .finally(() => setIsLoading(false));
   }
 
   function handleCardRemove(card) {
-    setIsLoading(true);
     mainApi.deleteMovie(card._id)
       .then(() => {
         const newCard = { ...card, isSaved: false }
@@ -206,7 +202,6 @@ function App() {
         setFilteredLikedCards((state) => state.filter((c) => (c._id !== card._id)));
       })
       .catch((err) => console.error(err))
-      .finally(() => setIsLoading(false));
   }
 
   return (
@@ -223,7 +218,8 @@ function App() {
 
             <ProtectedRoute exact path="/movies" loggedIn={loggedIn}>
               <Header/>
-              <SearchForm onSearchCards={searchCards}/>
+              <SearchForm searchValue={searchValue} setSearchValue={setSearchValue} 
+                isShortDurations={isShortDurations} setIsShortDurations={setIsShortDurations} onSearchCards={searchCards}/>
               {(() => {
                 if (isLoading) { return (<Preloader/>) }
                 else if (card.length === 0) { return (<NothingFound/>) }
@@ -247,10 +243,11 @@ function App() {
 
             <ProtectedRoute exact path="/saved-movies" loggedIn={loggedIn}>
               <Header/>
-              <SearchForm onSearchCards={searchSavedCards}/>
+              <SearchForm searchValue={searchValue} setSearchValue={setSearchValue} 
+                isShortDurations={isShortDurations} setIsShortDurations={setIsShortDurations} onSearchCards={searchSavedCards}/>
               {(() => {
                 if (isLoading) { return (<Preloader/>) }
-                else if (card.length === 0) { return (<NothingFound/>) }
+                else if (filteredLikedCards.length === 0) { return (<NothingFound/>) }
                 else { return (<MoviesCardList key="liked-cards" isInFavourites={true} cards={filteredLikedCards} handleCardRemove={handleCardRemove}/>) }
               })()}
               <Footer/>

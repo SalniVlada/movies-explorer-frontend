@@ -50,6 +50,9 @@ function Profile({onUpdateUser, errorMessage, setErrorMessage}) {
 
   function signOut() {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('cards');
+    localStorage.removeItem('isShortDurations');
+    localStorage.removeItem('searchValue');
     history.push('/');
     history.go(0);
   }

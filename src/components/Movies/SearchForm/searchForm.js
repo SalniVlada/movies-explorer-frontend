@@ -2,10 +2,8 @@ import { React, useState } from "react";
 import './searchForm.css';
 import Button from '../../../images/button-invisible.png';
 
-function SearchForm({onSearchCards}) {
+function SearchForm({searchValue, setSearchValue, isShortDurations, setIsShortDurations, onSearchCards}) {
 
-  const [searchValue, setSearchValue] = useState('');
-  const [isShortDurations, setIsShortDurations] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   useState(() => {
@@ -24,7 +22,7 @@ function SearchForm({onSearchCards}) {
     const isChecked = evt.target.checked;
     setIsShortDurations(isChecked);
     localStorage.setItem('isShortDurations', isChecked);
-    onSearchCards(searchValue, isChecked);
+    onSearchCards();
   };
 
   const handleSearch = (evt) => {
@@ -37,7 +35,7 @@ function SearchForm({onSearchCards}) {
     localStorage.setItem('searchValue', searchValue);
     if (searchValue) {
       setErrorMessage('');
-      onSearchCards(searchValue, isShortDurations);
+      onSearchCards();
     } else {
       setErrorMessage('Нужно ввести ключевое слово');
     }
