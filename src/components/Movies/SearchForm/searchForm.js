@@ -2,26 +2,36 @@ import { React, useState } from "react";
 import './searchForm.css';
 import Button from '../../../images/button-invisible.png';
 
-function SearchForm({searchValue, setSearchValue, isShortDurations, setIsShortDurations, onSearchCards}) {
+function SearchForm({type, searchValue, setSearchValue, isShortDurations, setIsShortDurations, onSearchCards, isResetWhenReload}) {
 
   const [errorMessage, setErrorMessage] = useState('');
 
   useState(() => {
-    const cachedSearchValue = localStorage.getItem('searchValue');
-    if (cachedSearchValue) {
-      setSearchValue(cachedSearchValue);
-    }
+    let needSearchExecution = false;
+    if (!isResetWhenReload) {
+      const cachedSearchValue = localStorage.getItem(`${type}-searchValue`);
+      if (cachedSearchValue) {
+        setSearchValue(cachedSearchValue);
+        needSearchExecution = true;
+      }
     
-    const cachedIsShortDurations = localStorage.getItem('isShortDurations') === "true";
-    if (cachedIsShortDurations) {
-      setIsShortDurations(cachedIsShortDurations);
+      const cachedIsShortDurations = localStorage.getItem(`${type}-isShortDurations`) === "true";
+      if (cachedIsShortDurations) {
+        setIsShortDurations(cachedIsShortDurations);
+      }
+    } else {
+      setSearchValue('');
+      setIsShortDurations(false);
+    }
+    if (needSearchExecution) {
+      onSearchCards();
     }
   });
 
   const handleSwitchShortDurations = (evt) => {
     const isChecked = evt.target.checked;
     setIsShortDurations(isChecked);
-    localStorage.setItem('isShortDurations', isChecked);
+    localStorage.setItem(`${type}-isShortDurations`, isChecked);
     onSearchCards();
   };
 
@@ -32,8 +42,8 @@ function SearchForm({searchValue, setSearchValue, isShortDurations, setIsShortDu
   };
 
   function handleSearchClick(evt) {
-    localStorage.setItem('searchValue', searchValue);
     if (searchValue) {
+      localStorage.setItem(`${type}-searchValue`, searchValue);
       setErrorMessage('');
       onSearchCards();
     } else {

@@ -13,3 +13,5 @@
 @import url(../../blocks/profile/__error/profile__error.css);
 @import url(../../blocks/profile/__button-edit/_disabled/profile__button-edit_disabled.css);
 @import url(../../blocks/profile/__button-visible/profile__button-visible.css);
+@import url(../../blocks/profile/__succes-message/profile__succes-message.css);
+@import url(../../blocks/profile/__succes-message/_visible/profile__succes-message_visible.css);

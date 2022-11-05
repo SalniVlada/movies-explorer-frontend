@@ -5,16 +5,22 @@ import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { useFormWithValidation } from '../../utils/Validation';
 import './profile.css';
 
-function Profile({onUpdateUser, errorMessage, setErrorMessage}) {
+function Profile({onUpdateUser, onLogout, errorMessage, setErrorMessage, succesMessage}) {
 
   const history = useHistory();
   const currentUser = useContext(CurrentUserContext);
   const { values, setValues, errors, isValid, handleChange } = useFormWithValidation();
+  const [isChanged, setIsChanged] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
+
+  useEffect(() => {
+    setIsChanged(values.personName !== currentUser.name || values.personEmail !== currentUser.email);
+  }, [values, currentUser]);
 
   function handleUpdateUser(evt) {
     evt.preventDefault();
     onUpdateUser(values.personName, values.personEmail);
+    setIsEditMode(false);
   }
 
   function handleChangeName(evt) {
@@ -35,24 +41,12 @@ function Profile({onUpdateUser, errorMessage, setErrorMessage}) {
     setValues({personName: currentUser.name, personEmail: currentUser.email});
   }, [currentUser]);
 
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    onUpdateUser(values.personName, values.personEmail);
-  }
-
   function clickEditButton() {
     setIsEditMode(true);
   }
 
-  function clickSaveButton() {
-    history.go(0);
-  }
-
   function signOut() {
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('cards');
-    localStorage.removeItem('isShortDurations');
-    localStorage.removeItem('searchValue');
+    onLogout();
     history.push('/');
     history.go(0);
   }
@@ -75,8 +69,9 @@ function Profile({onUpdateUser, errorMessage, setErrorMessage}) {
           </label>
           <p className='profile__error'>{errors.personEmail}</p>
           <p className={`profile__error-message ${errorMessage && 'profile__error-message_visible'}`}>{errorMessage}</p>
-          <button type="button" className={`profile__button-edit ${!isEditMode || 'profile__button-visible'}`} onSubmit={handleSubmit} onClick={clickEditButton} >Редактировать</button>
-          <button type="submit" className={`profile__button-save_disable ${isValid && 'profile__button-save'} ${isEditMode || 'profile__button-visible'}`} onClick={clickSaveButton} >Сохранить</button>
+          <p className={`profile__succes-message ${succesMessage && 'profile__succes-message_visible'}`}>{succesMessage}</p>
+          <button type="button" className={`profile__button-edit ${!isEditMode || 'profile__button-visible'}`} onClick={clickEditButton} >Редактировать</button>
+          <button type="submit" className={`profile__button-save_disable ${isValid && isChanged && 'profile__button-save'} ${isEditMode || 'profile__button-visible'}`} >Сохранить</button>
           <button type="button" className={`profile__button-exit ${!isEditMode || 'profile__button-visible'}`} onClick={signOut}>Выйти из аккаунта</button>
         </form>
       </section>

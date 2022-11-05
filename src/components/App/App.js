@@ -9,10 +9,8 @@ import Register from '../Register/register';
 import Profile from '../Profile/profile';
 import PageNotFound from '../PageNotFound/pageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import SearchForm from '../Movies/SearchForm/searchForm';
-import MoviesCardList from '../Movies/MoviesCardList/moviesCardList';
-import Preloader from '../Preloader/Preloader';
-import NothingFound from '../Movies/NothingFound/nothingFound';
+import RedirectRoute from '../RedirectRoute/RedirectRoute';
+import Movies from '../Movies/movies';
 import { authApi } from '../../utils/AuthApi';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { mainApi } from '../../utils/MainApi';
@@ -23,14 +21,10 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [currentUser, setCurrentUser] = useState([]);
   const [loggedIn, setLoggedIn] = useState(null);
-  const [searchValue, setSearchValue] = useState('');
-  const [isShortDurations, setIsShortDurations] = useState(false);
-  const [card, setCard] = useState([]);
+  const [allCards, setAllCards] = useState([]);
   const [likedCards, setLikedCards] = useState([]);
-  const [filteredLikedCards, setFilteredLikedCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const history = useHistory();
+  const [succesMessage, setSuccesMessage] = useState('');
 
   useEffect(() => {
     tokenCheck();
@@ -44,13 +38,12 @@ function App() {
       mainApi.getSavedMovies()
         .then((data) => {
           setLikedCards(data.data);
-          setFilteredLikedCards(data.data);
         })
         .catch((err) => console.error(err));
 
-      const cachedCards = localStorage.getItem('cards');
-      if (cachedCards) {
-        setCard(JSON.parse(cachedCards));
+      const cachedAllCards = localStorage.getItem('all-movies-cards');
+      if (cachedAllCards) {
+        setAllCards(JSON.parse(cachedAllCards));
       }
     }
   }, [loggedIn]);
@@ -65,9 +58,11 @@ function App() {
         .catch((err) => {
           console.log(err);
           setLoggedIn(false);
+          onLogout();
         });
     } else {
       setLoggedIn(false);
+      onLogout();
     }
   }
 
@@ -91,8 +86,6 @@ function App() {
         localStorage.setItem('jwt', data.jwt);
         setCurrentUser(data);
         setLoggedIn(true);
-        history.push('/movies');
-        history.go(0);
         setErrorMessage('');
       })
       .catch((err) => {
@@ -104,10 +97,21 @@ function App() {
       })
   }
 
+  function onLogout() {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('all-movies-cards');
+    localStorage.removeItem('all-movies-search-form-isShortDurations');
+    localStorage.removeItem('all-movies-search-form-searchValue');
+    localStorage.removeItem('saved-movies-cards');
+    localStorage.removeItem('saved-movies-search-form-isShortDurations');
+    localStorage.removeItem('saved-movies-search-form-searchValue');
+  }
+
   function handleUpdateUser(name, email) {
     mainApi.patchUserInfo(name, email)
       .then((data)=>{
         setCurrentUser(data);
+        setSuccesMessage('Успешно!')
       })
       .catch((err) => {
         if (400) {
@@ -118,72 +122,54 @@ function App() {
       })
   };
 
-  //фильтр по фильмам
-  function filterCards(card) {
-    const filteredCard = card
-    .filter((card) => {
-      return (card.nameRU.toUpperCase().includes(searchValue.toUpperCase()) || 
-        card.nameEN.toUpperCase().includes(searchValue.toUpperCase())) && ((isShortDurations && card.duration <= 40) || !isShortDurations);
-    })
-    return filteredCard;
-  }
-
-  function searchCards(searchValue, isShortDurations) {
-    setIsLoading(true);
-    if (loggedIn) {
-      moviesApi.getMovies().then((data) => {
-        const filteredCards = filterCards(data)
-          .map((card) => {
-            const likedCard = likedCards.find((likedCard) => likedCard.movieId === card.id);
-            const likedCardId = likedCard ? likedCard._id : undefined;
-            return {
-              country: card.country,
-              director: card.director,
-              duration: card.duration,
-              year: card.year,
-              description: card.description,
-              image: `https://api.nomoreparties.co${card.image.url}`,
-              trailerLink: card.trailerLink,
-              nameRU: card.nameRU,
-              nameEN: card.nameEN,
-              thumbnail: `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`,
-              movieId: card.id,
-              owner: card.owner,
-              isSaved: likedCard ? true : false,
-              _id: likedCardId
-            };
-          });
-        setCard(filteredCards);
-        localStorage.setItem('cards', JSON.stringify(filteredCards));
-      })
-      .catch((err) => console.error(err))
-     .finally(() => setIsLoading(false));
+  function refreshAllCards() {
+    if (loggedIn & allCards.length === 0) {
+      setIsLoading(true);
+      moviesApi.getMovies()
+        .then((data) => {
+          const loadedCards = data.map((card) => {
+              const likedCard = likedCards.find((likedCard) => likedCard.movieId === card.id);
+              const likedCardId = likedCard ? likedCard._id : undefined;
+              return {
+                country: card.country,
+                director: card.director,
+                duration: card.duration,
+                year: card.year,
+                description: card.description,
+                image: `https://api.nomoreparties.co${card.image.url}`,
+                trailerLink: card.trailerLink,
+                nameRU: card.nameRU,
+                nameEN: card.nameEN,
+                thumbnail: `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`,
+                movieId: card.id,
+                owner: card.owner,
+                isSaved: likedCard ? true : false,
+                _id: likedCardId
+              };
+            });
+          setAllCards(loadedCards);
+          localStorage.setItem('all-movies-cards', JSON.stringify(loadedCards));
+        })
+        .catch((err) => console.error(err))
+        .finally(() => setIsLoading(false));
     }
   };
 
-  function searchSavedCards() {
-    const filteredSavedCards = filterCards(likedCards);
-    setFilteredLikedCards(filteredSavedCards);
-  }
+  function refreshLikedCards() {}
 
   function handleCardSave(card) {
     mainApi.postMovie(card)
       .then((data) => {
         const newCard = { ...data.data, isSaved: true }
-        setCard((state) => {
+        setAllCards((state) => {
           const newState = state.map((c) => (c.movieId === card.movieId ? newCard : c));
-          localStorage.setItem('cards', JSON.stringify(newState));
+          localStorage.setItem('all-movies-cards', JSON.stringify(newState));
           return newState;
         });
         setLikedCards((state) => {
           const currentLikedCards = state.filter((c) => (c._id !== card._id));
           currentLikedCards.push(newCard);
           return currentLikedCards;
-        });
-        setFilteredLikedCards((state) => {
-          const currentLikedCards = state.filter((c) => (c._id !== card._id));
-          currentLikedCards.push(newCard);
-          return filterCards(currentLikedCards);
         });
       })
       .catch((err) => console.error(err))
@@ -193,13 +179,12 @@ function App() {
     mainApi.deleteMovie(card._id)
       .then(() => {
         const newCard = { ...card, isSaved: false }
-        setCard((state) => {
+        setAllCards((state) => {
           const newState = state.map((c) => (c.movieId === card.movieId ? newCard : c));
-          localStorage.setItem('cards', JSON.stringify(newState));
+          localStorage.setItem('all-movies-cards', JSON.stringify(newState));
           return newState;
         });
         setLikedCards((state) => state.filter((c) => (c._id !== card._id)));
-        setFilteredLikedCards((state) => state.filter((c) => (c._id !== card._id)));
       })
       .catch((err) => console.error(err))
   }
@@ -211,46 +196,33 @@ function App() {
         <BrowserRouter>
           <Switch>
             <Route exact path="/">
-              <Header/>
+              <Header loggedIn={loggedIn}/>
               <Main/>
               <Footer/>
             </Route>
 
             <ProtectedRoute exact path="/movies" loggedIn={loggedIn}>
-              <Header/>
-              <SearchForm searchValue={searchValue} setSearchValue={setSearchValue} 
-                isShortDurations={isShortDurations} setIsShortDurations={setIsShortDurations} onSearchCards={searchCards}/>
-              {(() => {
-                if (isLoading) { return (<Preloader/>) }
-                else if (card.length === 0) { return (<NothingFound/>) }
-                else { return (<MoviesCardList key="found-cards" isInFavourites={false} cards={card} handleCardSave={handleCardSave} handleCardRemove={handleCardRemove}/>) }
-              })()}
-              <Footer/>
+              <Movies key="all-movies" type="all-movies" isLoading={isLoading} cards={allCards} refreshCards={refreshAllCards} 
+                handleCardSave={handleCardSave} handleCardRemove={handleCardRemove} isInFavourites={false}/>
             </ProtectedRoute>
 
-            <Route exact path="/signin" isRedirect={loggedIn} redirectPath="/movies">
+            <RedirectRoute exact path="/signin" isRedirect={loggedIn} redirectPath="/movies">
               <Login onLogin={onLogin} errorMessage={errorMessage} setErrorMessage={setErrorMessage}/>
-            </Route>
+            </RedirectRoute>
 
-            <Route exact path="/signup" isRedirect={loggedIn} redirectPath="/movies">
+            <RedirectRoute exact path="/signup" isRedirect={loggedIn} redirectPath="/movies">
               <Register onRegister={onRegister} errorMessage={errorMessage} setErrorMessage={setErrorMessage}/>
-            </Route>
+            </RedirectRoute>
 
             <ProtectedRoute exact path="/profile" loggedIn={loggedIn}>
-              <Header/>
-              <Profile onUpdateUser={handleUpdateUser} errorMessage={errorMessage} setErrorMessage={setErrorMessage}/>
+              <Header loggedIn={true}/>
+              <Profile onUpdateUser={handleUpdateUser} onLogout={onLogout} errorMessage={errorMessage} setErrorMessage={setErrorMessage}
+               succesMessage={succesMessage}/>
             </ProtectedRoute>
 
             <ProtectedRoute exact path="/saved-movies" loggedIn={loggedIn}>
-              <Header/>
-              <SearchForm searchValue={searchValue} setSearchValue={setSearchValue} 
-                isShortDurations={isShortDurations} setIsShortDurations={setIsShortDurations} onSearchCards={searchSavedCards}/>
-              {(() => {
-                if (isLoading) { return (<Preloader/>) }
-                else if (filteredLikedCards.length === 0) { return (<NothingFound/>) }
-                else { return (<MoviesCardList key="liked-cards" isInFavourites={true} cards={filteredLikedCards} handleCardRemove={handleCardRemove}/>) }
-              })()}
-              <Footer/>
+              <Movies key="saved-movies" type="saved-movies" isLoading={isLoading} cards={likedCards} refreshCards={refreshLikedCards} 
+                 handleCardSave={handleCardSave} handleCardRemove={handleCardRemove} isInFavourites={true}/>
             </ProtectedRoute>
 
             <Route path="*">
