@@ -34,10 +34,10 @@ function App() {
           setCurrentUser(data);
         })
         .catch((err) => console.error(err));
-
-      mainApi.getSavedMovies()
+      
+      fetchLikedCards()
         .then((data) => {
-          setLikedCards(data.data);
+          setLikedCards(data);
         })
         .catch((err) => console.error(err));
 
@@ -123,12 +123,15 @@ function App() {
   };
 
   function refreshAllCards() {
-    if (loggedIn & allCards.length === 0) {
+    if (loggedIn && allCards.length === 0) {
       setIsLoading(true);
-      moviesApi.getMovies()
-        .then((data) => {
-          const loadedCards = data.map((card) => {
-              const likedCard = likedCards.find((likedCard) => likedCard.movieId === card.id);
+      const likedCardsFetching = fetchLikedCards();
+      const allCardsFetching = moviesApi.getMovies();
+      Promise.all([likedCardsFetching, allCardsFetching])
+        .then(function([currentLikedCards, currentAllCards]) {
+          setLikedCards(currentLikedCards);
+          const loadedCards = currentAllCards.map((card) => {
+              const likedCard = currentLikedCards.find((likedCard) => likedCard.movieId === card.id);
               const likedCardId = likedCard ? likedCard._id : undefined;
               return {
                 country: card.country,
@@ -154,6 +157,14 @@ function App() {
         .finally(() => setIsLoading(false));
     }
   };
+
+  function fetchLikedCards() {
+    if (likedCards.length === 0) {
+      return mainApi.getSavedMovies().then((data) => data.data);
+    } else {
+      return Promise.resolve(likedCards);
+    }
+  }
 
   function refreshLikedCards() {}
 

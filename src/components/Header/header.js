@@ -1,5 +1,5 @@
 import { React } from 'react';
-import {Link, Route, Switch, useLocation, NavLink } from 'react-router-dom';
+import {Link, useLocation, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './header.css';
 import Logo from '../../images/logo.svg';

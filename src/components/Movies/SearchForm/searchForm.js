@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import './searchForm.css';
 import Button from '../../../images/button-invisible.png';
 
@@ -6,7 +6,7 @@ function SearchForm({type, searchValue, setSearchValue, isShortDurations, setIsS
 
   const [errorMessage, setErrorMessage] = useState('');
 
-  useState(() => {
+  useEffect(() => {
     let needSearchExecution = false;
     if (!isResetWhenReload) {
       const cachedSearchValue = localStorage.getItem(`${type}-searchValue`);
@@ -26,7 +26,7 @@ function SearchForm({type, searchValue, setSearchValue, isShortDurations, setIsS
     if (needSearchExecution) {
       onSearchCards();
     }
-  });
+  }, []);
 
   const handleSwitchShortDurations = (evt) => {
     const isChecked = evt.target.checked;
