@@ -1,0 +1,29 @@
+.profile__succes-message {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  min-width: 410px;
+  margin: 0 auto;
+  margin-top: 189px;
+  color: rgba(43, 224, 128, 1);
+  text-align: center;
+  visibility: hidden;
+  display: block;
+  min-height: 32px;
+}
+@media screen and (max-width:1279px) {
+  .profile__succes-message {
+    margin-top: 170px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .profile__succes-message {
+    min-width: 260px;
+    margin-top: 340px;
+    font-size: 10px;
+    line-height: 15px;
+  }
+}

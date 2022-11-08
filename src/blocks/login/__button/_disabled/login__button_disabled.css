@@ -1,0 +1,5 @@
+.login__button_disabled {
+  background-color: #F8F8F8;
+  color:rgba(194, 194, 194, 1);
+  cursor: default;
+}

@@ -4,11 +4,11 @@ import SearchForm from "../Movies/SearchForm/searchForm";
 import MoviesCardList from "../Movies/MoviesCardList/moviesCardList";
 import Footer from "../Footer/footer";
 
-function SavedMovies() {
+function SavedMovies({card, setCard}) {
   return (
     <section className="saved-movies">
       <SearchForm/>
-      <MoviesCardList isInFavourites={true}/>
+      <MoviesCardList isInFavourites={true} card={card} setCard={setCard}/>
       <Footer/>
     </section>
   );

@@ -1,8 +1,7 @@
 import { React } from "react";
 import './moviesCard.css';
-import CardImage from '../../../images/pic-1.png';
 
-function MoviesCard({card, isInFavourites, isSaved, onCardSave}) {
+function MoviesCard({card, isInFavourites, isSaved, onCardSave, onCardRemove}) {
 
   const useButtonClassName = (() => {
     if (isInFavourites) {
@@ -14,20 +13,29 @@ function MoviesCard({card, isInFavourites, isSaved, onCardSave}) {
     }
   })();
 
-  const handleCardSave = () => {
-    onCardSave(card);
+  const handleCardSaveRemove = () => {
+    if (isInFavourites || card.isSaved) {
+      onCardRemove(card);
+    } else {
+      onCardSave(card);
+    }
   }
 
-  return (
+  function getTimeFromMins(duration) {
+    let hours = Math.trunc(duration/60);
+    let minutes = duration % 60;
+    return hours + 'ч ' + minutes + 'м';
+};
 
+  return (
     <li className="card">
-      <img src={CardImage} alt="Девушка с детьми" className="card__photo" />
+      <a href={card.trailerLink} rel="noreferrer" target="_blank"><img src={`${card.image}`} alt={card.nameRU} className="card__photo"/></a>
       <div className="card__group">
         <div className="card__title">
-          <h3 className="card__name">33 слова о дизайне</h3>
-          <h3 className="card__duration">1ч 47м</h3>
+          <h3 className="card__name">{card.nameRU}</h3>
+          <h3 className="card__duration">{getTimeFromMins(card.duration)}</h3>
         </div>
-        <button type="button" className={useButtonClassName} title="Кнопка реакции" onClick={handleCardSave}></button>
+        <button type="button" className={useButtonClassName} title="Кнопка реакции" onClick={handleCardSaveRemove}></button>
       </div>
     </li>
   );

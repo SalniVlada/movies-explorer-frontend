@@ -9,6 +9,9 @@
   margin-top: 189px;
   color: rgba(238, 52, 101, 1);
   text-align: center;
+  visibility: hidden;
+  display: block;
+  min-height: 32px;
 }
 
 @media screen and (max-width:1279px) {
