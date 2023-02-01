@@ -1,0 +1,11 @@
+.login__error-message {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+  color: #FF004C;
+  margin-top: 189px;
+  visibility: hidden;
+}

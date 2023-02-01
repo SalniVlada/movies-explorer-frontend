@@ -7,3 +7,5 @@
 @import url(../../../blocks/seach/__input/seach__input.css);
 @import url(../../../blocks/seach/__line/seach__line.css);
 @import url(../../../blocks/seach/__switch/seach__switch.css);
+@import url(../../../blocks/seach/__error-message/seach__error-message.css);
+@import url(../../../blocks/seach/__error-message/_visible/seach__error-message_visible.css);

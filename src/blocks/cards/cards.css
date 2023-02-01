@@ -3,7 +3,6 @@
   display: grid;
   gap: 43px 24px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
   justify-items: center;
   list-style-type: none;
   margin: 0 auto;
