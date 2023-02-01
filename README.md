@@ -26,5 +26,7 @@
 * работа с API
 * Асинхронность
 
-### Сгенерированный макет
+### Ссылки
 [Макет](https://disk.yandex.ru/d/9PgLeBjOAlc2Lw)
+
+[Сайт](https://moviesexplorer.salnivlada.nomoredomains.sbs/)
